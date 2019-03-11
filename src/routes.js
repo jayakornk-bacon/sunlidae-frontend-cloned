@@ -1,10 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch } from 'react-router';
 
 import Test from './components/Test';
+import Homepage from './pages/Homepage';
 
 export default () => (
   <Router>
-    <Route path="/" component={Test} />
+    <Switch>
+      <Route exact path="/" component={Test} />
+      <Route path="/home" component={Homepage} />
+    </Switch>
   </Router>
 );
