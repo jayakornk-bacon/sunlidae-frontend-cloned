@@ -27,7 +27,11 @@ const Test = () => (
       <Search id="search-box" />
       <form>
         <input placeholder="Name" />
+        <input placeholder="Email" />
+        <textarea placeholder="Message" />
+        <Button>Submit</Button>
       </form>
+      <a href="#1">Normal</a>
     </Container>
   </Fragment>
 );
