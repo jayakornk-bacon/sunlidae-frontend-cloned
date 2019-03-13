@@ -12,10 +12,13 @@ import {
 const BGFooter = styled.div`
   padding: 100px 40px 100px 70px;
   margin-top: 20px;
-  background-image: url('https://via.placeholder.com/1200x450');
+  background-image: url('https://blog.traveloka.com/source/uploads/sites/5/2017/12/shutterstock_721752283.jpg');
+  background-position: center center;
+  background-size: cover;
   position: relative;
   border-radius: 5px;
   text-align: left;
+  color: #fff;
 `;
 
 const BannerSection = styled.div`

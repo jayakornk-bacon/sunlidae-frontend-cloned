@@ -8,6 +8,7 @@ const Title = styled.h3`
   right: 0;
   margin: auto;
   bottom: 50px;
+  color: #fff;
 `;
 
 function ProvinceCard(props) {
@@ -17,6 +18,8 @@ function ProvinceCard(props) {
     padding: 15px;
     margin-top: 20px;
     background-image: url('${province.img_url}');
+    background-size: cover;
+    background-position: center center;
     min-height: 280px;
     position: relative;
     border-radius: 5px;

@@ -42,7 +42,7 @@ function TripCard(props) {
 
   return (
     <Card>
-      <Img src={trip.blogger_img} alt={trip.name} />
+      <Img src={trip.img_src} alt={trip.name} />
       <div>
         {trip.day}
         {' '}

@@ -11,7 +11,7 @@ const ProvinceSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        'https://api.myjson.com/bins/k3hyi',
+        'https://api.myjson.com/bins/umrl2',
       );
       setTrip(result.data);
     };
