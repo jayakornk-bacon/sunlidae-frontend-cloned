@@ -1,32 +1,36 @@
 import styled from 'styled-components/macro';
 
 const Button = styled.button`
-  background-color: ${props => ((props.outline && 'transparent')
-    || (props.contrast && props.theme.contrast.idle)
-    || props.theme.primary.idle)};
-  color: ${props => (props.outline && props.contrast && props.theme.contrast.idle)
-    || (props.outline && props.theme.primary.idle)
+  background-color: ${({ outline, contrast, theme }) => ((outline && 'transparent')
+    || (contrast && theme.contrast.idle)
+    || theme.primary.idle)};
+  color: ${({ outline, contrast, theme }) => (outline && contrast && theme.contrast.idle)
+    || (outline && theme.primary.idle)
     || '#fff'};
-  padding: .9rem 3.25rem .6rem;
+  padding: .5rem 3.25rem;
   cursor: pointer;
   border-radius: 5rem;
-  border: 1px solid ${props => (props.contrast && props.theme.contrast.idle)
-    || props.theme.primary.idle};
+  border: 1px solid ${({ contrast, theme }) => (contrast && theme.contrast.idle)
+    || theme.primary.idle};
   font-weight: 700;
   outline: none;
   text-transform: uppercase;
   transition: all .3s;
 
   &:hover {
-    background-color: ${props => (props.outline && props.contrast && props.theme.contrast.idle)
-      || (props.outline && props.theme.primary.idle)
-      || (props.contrast && props.theme.contrast.hover)
-      || props.theme.primary.hover};
-    border-color: ${props => (props.outline && props.contrast && props.theme.contrast.idle)
-      || (props.outline && props.theme.primary.idle)
-      || (props.contrast && props.theme.contrast.hover)
-      || props.theme.primary.hover};
+    background-color: ${({ outline, contrast, theme }) => (outline && contrast && theme.contrast.idle)
+      || (outline && theme.primary.idle)
+      || (contrast && theme.contrast.hover)
+      || theme.primary.hover};
+    border-color: ${({ outline, contrast, theme }) => (outline && contrast && theme.contrast.idle)
+      || (outline && theme.primary.idle)
+      || (contrast && theme.contrast.hover)
+      || theme.primary.hover};
     color: #fff;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 

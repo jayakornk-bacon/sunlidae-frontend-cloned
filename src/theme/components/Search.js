@@ -3,20 +3,20 @@ import styled from 'styled-components/macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Form = styled.form`
-  display: inline-block;
   position: relative;
 `;
 
 const Input = styled.input`
   border: 1px solid #DCDCDC;
   border-radius: 5rem;
-  font-weight: 700;
   outline: none;
-  padding: .9rem 4.5rem .6rem 2.5rem;
+  margin: 0;
+  padding: .5rem 4.5rem .5rem 2.5rem;
+  width: 100%;
 `;
 
 const Label = styled.label`
-  color: ${props => props.theme.accent};
+  color: ${({ theme }) => theme.accent};
   cursor: pointer;
   line-height: 0;
   position: absolute;

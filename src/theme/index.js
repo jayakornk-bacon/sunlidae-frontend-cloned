@@ -16,4 +16,6 @@ export const theme = {
   accent4: '#DCDCDC',
   accent5: '#333333',
   accent6: '#FFFFFF',
+  fontHead: 'Prajad, "Font Awesome 5 Pro", sans-serif',
+  fontBody: 'Prajad, "Font Awesome 5 Pro", serif',
 };
