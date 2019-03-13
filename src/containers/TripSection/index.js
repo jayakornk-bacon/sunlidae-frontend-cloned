@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 import TripCard from '../../components/TripCard';
 import { spacing, Section } from '../../theme';
-
-const AllCard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
 
 const ProvinceSection = () => {
   const [trip, setTrip] = useState(null);
@@ -27,20 +21,23 @@ const ProvinceSection = () => {
   let TripCards = '';
   if (trip !== null) {
     TripCards = trip.map(place => (
-      <TripCard trip={place} key={place.name} />
+      <Col col={3}>
+        <TripCard trip={place} key={place.name} />
+      </Col>
     ));
   }
 
   return (
-    <Section spacing={spacing.medium} textCenter>
+    <Section spacing={spacing.mini} textCenter>
       <Container>
         <Row>
           <Col col={12}>
             <h2>Explore trips from local</h2>
-            <p>Get your self into new environment and feel the nature. Discover local unseen place with local people.</p>
-
-            <AllCard>{TripCards}</AllCard>
+            <p>Recommend trips and provide all information to you.</p>
           </Col>
+        </Row>
+        <Row>
+          {TripCards}
         </Row>
       </Container>
     </Section>

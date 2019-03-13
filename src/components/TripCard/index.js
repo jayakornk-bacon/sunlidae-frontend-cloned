@@ -2,7 +2,39 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  width: 25%;
+  text-align: left;
+  margin-top: 20px;
+`;
+const Title = styled.h3`
+  margin: 5px auto 0;
+`;
+
+const Img = styled.img`
+  margin-bottom: 20px;
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+`;
+
+const Desc = styled.p`
+  margin-bottom: 0;
+  margin-top: 10px;
+`;
+
+const Bloggler = styled.div`
+  display: flex;
+  margin-top: 15px;
+`;
+
+const BlogglerName = styled.h5` 
+  margin-top: 10px;
+`;
+
+const BlogglerImg = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
 `;
 
 function TripCard(props) {
@@ -10,16 +42,18 @@ function TripCard(props) {
 
   return (
     <Card>
-      <img src={trip.blogger_img} alt={trip.name} />
-      <p>
+      <Img src={trip.blogger_img} alt={trip.name} />
+      <div>
         {trip.day}
+        {' '}
         วัน
-      </p>
-      <h3>{trip.name}</h3>
-      <p>{trip.desc}</p>
-      <div className="blogger">
-        <h4>{trip.blogger_name}</h4>
       </div>
+      <Title>{trip.name}</Title>
+      <Desc>{trip.desc}</Desc>
+      <Bloggler>
+        <BlogglerImg src={trip.blogger_img} alt={trip.blogger_name} />
+        <BlogglerName>{trip.blogger_name}</BlogglerName>
+      </Bloggler>
     </Card>
   );
 }

@@ -23,4 +23,5 @@ export const spacing = {
   huge: '120px 0',
   medium: '80px 0',
   small: '40px 0',
+  mini: '0px 0',
 };
