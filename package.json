@@ -12,6 +12,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "destyle.css": "^1.0.5",
+    "polished": "^3.0.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-markdown": "^4.0.6",
