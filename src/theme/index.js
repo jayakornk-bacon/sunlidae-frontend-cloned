@@ -1,5 +1,6 @@
 export { default as Button } from './components/Button';
 export { default as Search } from './components/Search';
+export { default as Section } from './components/Section';
 
 export const theme = {
   primary: {
@@ -18,4 +19,10 @@ export const theme = {
   accent6: '#FFFFFF',
   fontHead: 'Prajad, "Font Awesome 5 Pro", sans-serif',
   fontBody: 'Prajad, "Font Awesome 5 Pro", serif',
+  spacing: {
+    huge: '120px 0',
+    medium: '80px 0',
+    small: '40px 0',
+    mini: '0',
+  },
 };
