@@ -1,16 +1,56 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 import styled from 'styled-components/macro';
+import { darken } from 'polished';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import Section from '../../theme/components/Section';
+import Chip from '../../theme/components/Chip';
+import Trip from './Trip';
+
+const SectionBg = styled(Section)`
+  background-image: url('${`${process.env.PUBLIC_URL}/img/user_bg.svg`}');
+  background-position: right 80%;
+  background-repeat: no-repeat;
+`;
+
+const User = styled.div`
+  margin-bottom: 4rem;
+  position: relative;
+`;
 
 const UserImage = styled.img`
   border-radius: .4rem;
   width: 100%;
   max-width: 285px;
-  margin-bottom: 4rem;
 `;
 
-const UsernameWrapper = styled.div`
+const UserSocials = styled.div`
+  display: flex;
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.5rem;
+`;
+
+const UserSocial = styled.a`
+  color: #fff;
+  font-size: 2.4rem;
+  line-height: 0;
+  text-decoration: none;
+  transition: color .3s;
+
+  & + & {
+    margin-left: 1.25rem;
+  }
+
+  &:hover {
+    color: ${darken(0.16, '#fff')};
+  }
+`;
+
+const UserName = styled.div`
   > h1 {
     font-size: 3rem;
     font-weight: 700;
@@ -61,7 +101,6 @@ const UserStat = styled.div`
 `;
 
 const UserDesc = styled.div`
-  /* width: 80%; */
   > p {
     color: #68767C;
     font-size: 1.6rem;
@@ -74,31 +113,12 @@ const Hr = styled.hr`
   margin: 3.5rem 0 0;
 `;
 
-const UserInfo = styled.div`
+const UserStyle = styled.div`
   > strong {
     display: block;
     font-size: 1.6rem;
     font-weight: 700;
     margin: 3.6rem 0 1.2rem;
-  }
-`;
-
-const Badges = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-
-  > div {
-    background-color: #EDEDED;
-    border-radius: 2rem;
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 1;
-    padding: 1rem;
-  }
-
-  > div + div {
-    margin-left: 1rem;
   }
 `;
 
@@ -112,53 +132,98 @@ const H2 = styled.h2`
   font-weight: 700;
 `;
 
-// const UserInfo = styled.div`
-//   border: 1px solid ${({ theme }) => theme.accent4};
-//   border-radius: 4px;
-//   padding: 3rem 2.5rem;
-// `;
+const Related = styled.div`
+  text-align: center;
 
-const UserProfile = () => (
-  <Container>
-    <Row>
-      <Col col="3">
-        <UserImage src="https://avatars1.githubusercontent.com/u/46859480?s=400&u=014176c78d3258c10aafc476fd35ef4fd7448b53&v=4" alt="" />
-        <div>
-          <UsernameWrapper>
-            <h1>jayakornk</h1>
-            {/* <span>Jayakorn Karikan</span> */}
-          </UsernameWrapper>
-          <UserStat>
-            <strong data-stat-name="Trips">1,022</strong>
-            <strong data-stat-name="Followers">47.2k</strong>
-          </UserStat>
-          <UserDesc>
-            <p>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง</p>
-          </UserDesc>
-          <Hr />
-          <UserInfo>
-            <strong>Travel styles</strong>
-            <Badges>
-              <div>⛰ภูเขา</div>
-              <div>🏖 ทะเล</div>
-            </Badges>
-            <strong>Location</strong>
-            <UserLocation>Bangkok, Thailand</UserLocation>
-          </UserInfo>
-        </div>
-      </Col>
-      <Col col="8" offset="1">
-        <div className="mt-5">
-          <div className="d-flex align-items-center justify-content-between mb-3">
-            <H2>Trips</H2>
-            <Badges>
-              <div>In 2018</div>
-            </Badges>
-          </div>
-        </div>
-      </Col>
-    </Row>
-  </Container>
-);
+  > img {
+    border-radius: 50%;
+    display: block;
+    width: 9.5rem;
+    height: 9.5rem;
+    margin: 0 auto 1.5rem;
+  }
+`;
+
+const UserProfile = () => {
+  const [users, setUsers] = useState([]);
+
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const res = await axios.get('https://randomuser.me/api?results=7&nat=us,gb');
+      console.log(res.data.results);
+      setUsers(res.data.results);
+    };
+
+    getUsers();
+  }, []);
+
+  return (
+    <SectionBg spacing="small">
+      <Container>
+        <Row>
+          <Col col="3">
+            <User>
+              <UserImage src="https://avatars1.githubusercontent.com/u/46859480?s=400&u=014176c78d3258c10aafc476fd35ef4fd7448b53&v=4" alt="" />
+              <UserSocials>
+                <UserSocial href="https://facebook.com"><FontAwesomeIcon icon={['fab', 'facebook']} /></UserSocial>
+                <UserSocial href="https://instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} /></UserSocial>
+              </UserSocials>
+            </User>
+            <div>
+              <UserName>
+                <h1>jayakornk</h1>
+              </UserName>
+              <UserStat>
+                <strong data-stat-name="Trips">1,022</strong>
+                <strong data-stat-name="Followers">47.2k</strong>
+              </UserStat>
+              <UserDesc>
+                <p>Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง</p>
+              </UserDesc>
+              <Hr />
+              <UserStyle>
+                <strong>Travel styles</strong>
+                <Chip>⛰ภูเขา</Chip>
+                <Chip tag="a" href="#">🏖 ทะเล</Chip>
+                <strong>Location</strong>
+                <UserLocation>Bangkok, Thailand</UserLocation>
+              </UserStyle>
+            </div>
+          </Col>
+          <Col col="8" offset="1">
+            <div className="mt-5">
+              <div className="d-flex align-items-center justify-content-between mb-3">
+                <H2>Trips</H2>
+                <Chip>In 2018</Chip>
+              </div>
+            </div>
+            <Row className="mt-5">
+              <Trip href="#" />
+              <Trip href="#" />
+              <Trip href="#" />
+              <Trip href="#" />
+              <Trip href="#" />
+              <Trip href="#" />
+            </Row>
+          </Col>
+        </Row>
+        <Row className="mt-5">
+          <Col col="12">
+            <H2>Related Travellers</H2>
+          </Col>
+          <Col className="d-flex align-items-center justify-content-around mt-5">
+            {users.map(user => (
+              <Related key={user.login.uuid}>
+                <img src={user.picture.large} alt={user.email} />
+                <span>{`${user.name.first.charAt(0).toUpperCase()}${user.name.first.slice(1)} ${user.name.last.slice(0, 1).toUpperCase()}.`}</span>
+              </Related>
+            ))}
+          </Col>
+        </Row>
+      </Container>
+    </SectionBg>
+  );
+};
 
 export default UserProfile;
